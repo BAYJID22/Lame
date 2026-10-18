@@ -1,0 +1,20 @@
+{
+  "name": "lame-bot-website",
+  "version": "4.2.0",
+  "description": "LAME Discord Anti-Nuke Website & Dashboard",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "bot": "node bot.js"
+  },
+  "dependencies": {
+    "axios": "^1.20.0",
+    "cors": "^2.8.6",
+    "discord.js": "^14.27.0",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.3",
+    "express-session": "^1.19.0",
+    "mongoose": "^8.24.5",
+    "socket.io": "^4.8.4"
+  }
+}

@@ -1,0 +1,17 @@
+html, body {
+    background-color: #090A0F !important;
+    color: #E2E8F0 !important;
+}
+
+.glass-card {
+    background: rgba(18, 20, 29, 0.75) !important;
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+body {
+  padding-bottom: 0 !important;
+}

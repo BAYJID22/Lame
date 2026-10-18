@@ -1,0 +1,21 @@
+html, body {
+    background-color: #090A0F !important;
+    color: #E2E8F0 !important;
+}
+
+.glass-card {
+    background: rgba(18, 20, 29, 0.75) !important;
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 30px -10px rgba(255, 255, 255, 0.15);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #FFFFFF 0%, #A1A1AA 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
