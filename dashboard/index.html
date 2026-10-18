@@ -10,16 +10,16 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Dashboard Custom CSS -->
-    <link rel="stylesheet" href="/dashboard/dashboard.css">
+    <link rel="stylesheet" href="./dashboard.css">
 </head>
 <body class="bg-[#090A0F] text-slate-100 min-h-screen flex flex-col justify-between items-center font-sans antialiased">
 
-    <!-- ================= SINGLE UNIFIED HEADER ================= -->
+    <!-- HEADER -->
     <header class="w-full bg-[#0b0c10]/90 backdrop-blur-md border-b border-white/5 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             
             <!-- LOGO + VERSION -->
-            <a href="/home/index.html" class="flex items-center gap-3 text-white text-decoration-none">
+            <a href="../" class="flex items-center gap-3 text-white text-decoration-none">
                 <div class="relative w-9 h-9 bg-[#5865F2] rounded-xl flex items-center justify-center text-lg text-white">
                     <i class="fa-brands fa-discord"></i>
                     <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 rounded-full border-2 border-[#0b0c10]"></span>
@@ -33,13 +33,13 @@
 
             <!-- NAV LINKS -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
-                <a href="/home/index.html" class="hover:text-white transition">Home</a>
-                <a href="/commands/index.html" class="hover:text-white transition flex items-center gap-1.5">
+                <a href="../" class="hover:text-white transition">Home</a>
+                <a href="../commands/" class="hover:text-white transition flex items-center gap-1.5">
                     Commands 
                     <span class="bg-white/10 text-white text-xs px-2 py-0.5 rounded-full">450+</span>
                 </a>
-                <a href="/dashboard/index.html" class="text-white font-bold">Dashboard</a>
-                <a href="/team/index.html" class="hover:text-white transition">Team</a>
+                <a href="./" class="text-white font-bold">Dashboard</a>
+                <a href="../team/" class="hover:text-white transition">Team</a>
             </nav>
 
             <!-- DISCORD LOGIN BUTTON -->
@@ -54,45 +54,34 @@
     <!-- MAIN DASHBOARD CONTENT AREA -->
     <main class="flex-grow flex items-center justify-center p-6 relative z-10 my-8 w-full">
 
-        <!-- ================= UNAUTHENTICATED STATE: LOGIN CARD ================= -->
+        <!-- UNAUTHENTICATED STATE: LOGIN CARD -->
         <div id="authPrompt" class="w-full max-w-md glass-card rounded-3xl p-8 lg:p-10 text-center relative border border-white/10 shadow-2xl space-y-6">
-            
-            <!-- ANIMATED GLOWING PFP CONTAINER -->
             <div class="relative w-28 h-28 mx-auto flex items-center justify-center">
-                <div class="absolute inset-0 rounded-full animate-spin-slow bg-gradient-to-r from-gray-200 via-gray-500 to-white opacity-80 blur-[6px]"></div>
-                <div class="absolute -inset-1 rounded-full animate-ping opacity-20 bg-white"></div>
-                <div class="absolute inset-0 rounded-full p-[2px] bg-gradient-to-tr from-white via-gray-400 to-gray-700 animate-spin-slow">
-                    <div class="w-full h-full bg-[#090A0F] rounded-full"></div>
-                </div>
                 <img id="botAvatarLogin" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Bot Avatar" class="w-24 h-24 rounded-full object-cover relative z-10 border-2 border-white/30 shadow-2xl">
             </div>
 
-            <!-- WELCOME HEADING & MESSAGE -->
             <div class="space-y-3 pt-2">
-                <h2 class="text-3xl font-extrabold text-white tracking-tight gradient-text">Welcome to Lame</h2>
+                <h2 class="text-3xl font-extrabold text-white tracking-tight">Welcome to Lame</h2>
                 <p class="text-sm text-gray-400 leading-relaxed max-w-sm mx-auto">
-                    Sign in to unlock your dashboard and take control of your servers with powerful management features.
+                    Sign in to unlock your dashboard and take control of your servers.
                 </p>
             </div>
 
-            <!-- DISCORD LOGIN BUTTON -->
             <div class="pt-2">
-                <a href="https://discord.com/oauth2/authorize?client_id=1550784546331697194&permissions=8&integration_type=0&scope=bot" class="w-full py-4 px-6 rounded-2xl bg-white text-black font-extrabold text-base hover:bg-gray-200 transition duration-300 flex items-center justify-center gap-3 shadow-lg shadow-white/10 glow-button">
+                <a href="https://discord.com/oauth2/authorize?client_id=1550784546331697194&permissions=8&integration_type=0&scope=bot" class="w-full py-4 px-6 rounded-2xl bg-white text-black font-extrabold text-base hover:bg-gray-200 transition flex items-center justify-center gap-3">
                     <i class="fa-brands fa-discord text-xl"></i>
                     <span>Login with Discord</span>
                 </a>
             </div>
 
-            <!-- FOOTER DISCLOSURE LINKS -->
             <p class="text-xs text-gray-500 pt-4 leading-normal">
                 By logging in, you agree to our 
-                <a href="term.html" class="text-gray-300 underline hover:text-white transition font-medium">Terms of Service</a> 
-                and 
-                <a href="policy.html" class="text-gray-300 underline hover:text-white transition font-medium">Privacy Policy</a>.
+                <a href="./policy.html" class="text-gray-300 underline hover:text-white transition font-medium">Terms</a> & 
+                <a href="./term.html" class="text-gray-300 underline hover:text-white transition font-medium">Privacy Policy</a>.
             </p>
         </div>
 
-        <!-- ================= AUTHENTICATED STATE: DASHBOARD UI ================= -->
+        <!-- AUTHENTICATED STATE: DASHBOARD UI -->
         <div id="dashUI" class="hidden w-full max-w-5xl space-y-6">
             <div class="glass-card p-6 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 border border-white/10">
                 <div>
@@ -145,11 +134,11 @@
         </div>
     </main>
 
-    <!-- ================= UNIFORM BOTTOM FOOTER ================= -->
+    <!-- FOOTER -->
     <footer class="w-full py-4 border-t border-white/5 text-center text-xs text-gray-400 font-medium bg-[#0b0c10]/40 mt-auto">
         <p>LAME Anti-Nuke Bot &copy; All Rights Reserved. Created by <span class="text-white font-bold">Flame</span> &amp; <span class="text-white font-bold">Shadow</span></p>
     </footer>
 
-    <script src="/dashboard/dashboard.js"></script>
+    <script src="./dashboard.js"></script>
 </body>
 </html>
