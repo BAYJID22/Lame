@@ -1,7 +1,8 @@
-// home/home.js
+// home.js — Pure GitHub Pages Sync
 
 function updateUI(data) {
     if (!data) return;
+    console.log("🎨 Updating UI with Bot Data:", data);
 
     // 1. Avatar Sync
     if (data.avatar) {
@@ -9,12 +10,14 @@ function updateUI(data) {
         if (avatarEl) avatarEl.src = data.avatar;
     }
 
-    // 2. Bot Name Sync
+    // 2. Bot Name Sync (Updates all name labels)
     if (data.botName) {
-        document.querySelectorAll('.bot-name-display').forEach(el => el.innerText = data.botName);
+        document.querySelectorAll('.bot-name-display').forEach(el => {
+            el.innerText = data.botName;
+        });
     }
 
-    // 3. Status Dot
+    // 3. Status Indicator Dot
     if (data.status) {
         const dot = document.getElementById('botStatusDot');
         if (dot) {
@@ -32,15 +35,37 @@ function updateUI(data) {
         if (act) act.innerText = data.activity;
     }
 
-    // 5. Metrics Cards
-    if (data.users !== undefined) document.getElementById('statUsers').innerText = Number(data.users).toLocaleString();
-    if (data.servers !== undefined) document.getElementById('statServers').innerText = Number(data.servers).toLocaleString();
-    if (data.commands !== undefined) document.getElementById('statCommands').innerText = `${data.commands}+`;
-    if (data.ping !== undefined) document.getElementById('statPing').innerText = `${data.ping}ms`;
-    if (data.uptime) document.getElementById('statUptime').innerText = data.uptime;
-    if (data.shards !== undefined) document.getElementById('statShards').innerText = data.shards;
-    if (data.clusters !== undefined) document.getElementById('statClusters').innerText = data.clusters;
-    
+    // 5. Statistics Cards
+    if (data.users !== undefined) {
+        const el = document.getElementById('statUsers');
+        if (el) el.innerText = Number(data.users).toLocaleString();
+    }
+    if (data.servers !== undefined) {
+        const el = document.getElementById('statServers');
+        if (el) el.innerText = Number(data.servers).toLocaleString();
+    }
+    if (data.commands !== undefined) {
+        const el = document.getElementById('statCommands');
+        if (el) el.innerText = `${data.commands}+`;
+    }
+    if (data.ping !== undefined) {
+        const el = document.getElementById('statPing');
+        if (el) el.innerText = `${data.ping}ms`;
+    }
+    if (data.uptime) {
+        const el = document.getElementById('statUptime');
+        if (el) el.innerText = data.uptime;
+    }
+    if (data.shards !== undefined) {
+        const el = document.getElementById('statShards');
+        if (el) el.innerText = data.shards;
+    }
+    if (data.clusters !== undefined) {
+        const el = document.getElementById('statClusters');
+        if (el) el.innerText = data.clusters;
+    }
+
+    // Hero & Nav Command badges
     if (data.commands) {
         const heroCmd = document.getElementById('heroCommandCount');
         const navCmd = document.getElementById('statCommandsBadge');
@@ -50,17 +75,21 @@ function updateUI(data) {
 }
 
 // Fetch bot-data.json from GitHub Pages
-document.addEventListener('DOMContentLoaded', async () => {
+async function loadBotData() {
     const yearEl = document.getElementById('year');
     if (yearEl) yearEl.innerText = new Date().getFullYear();
 
     try {
-        const res = await fetch('./bot-data.json?cache_bypass=' + new Date().getTime());
+        const res = await fetch('./bot-data.json?v=' + new Date().getTime());
         if (res.ok) {
             const data = await res.json();
             updateUI(data);
+        } else {
+            console.error("bot-data.json response not OK:", res.status);
         }
     } catch (err) {
-        console.error("Failed to load bot data:", err);
+        console.error("Failed to load bot stats:", err);
     }
-});
+}
+
+document.addEventListener('DOMContentLoaded', loadBotData);
