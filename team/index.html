@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,15 +7,23 @@
 
   <!-- TAILWIND CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts & Font Awesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Team CSS -->
   <link rel="stylesheet" href="./team.css" />
 </head>
 <body class="bg-[#090A0F] text-slate-100 min-h-screen flex flex-col justify-between items-center font-sans antialiased">
 
-  <!-- HEADER -->
+  <!-- ================= SINGLE UNIFIED HEADER ================= -->
   <header class="w-full bg-[#0b0c10]/90 backdrop-blur-md border-b border-white/5 sticky top-0 z-50">
       <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           
+          <!-- LOGO + VERSION -->
           <a href="../" class="flex items-center gap-3 text-white text-decoration-none">
               <div class="relative w-9 h-9 bg-[#5865F2] rounded-xl flex items-center justify-center text-lg text-white">
                   <i class="fa-brands fa-discord"></i>
@@ -28,7 +36,7 @@
               </div>
           </a>
 
-          <!-- NAV LINKS -->
+          <!-- NAV LINKS (FIXED FOR GITHUB PAGES SUBFOLDERS) -->
           <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
               <a href="../" class="hover:text-white transition">Home</a>
               <a href="../commands/" class="hover:text-white transition flex items-center gap-1.5">
@@ -39,7 +47,8 @@
               <a href="./" class="text-white font-bold">Team</a>
           </nav>
 
-          <a href="https://discord.com/oauth2/authorize?client_id=1550784546331697194&permissions=8&integration_type=0&scope=bot" target="_blank" class="bg-white text-black text-sm font-bold px-5 py-2.5 rounded-xl flex items-center gap-2 hover:bg-gray-200 transition">
+          <!-- DISCORD LOGIN BUTTON -->
+          <a href="https://discord.com/oauth2/authorize?client_id=1550784546331697194&permissions=8&integration_type=0&scope=bot" target="_blank" class="bg-white text-black text-sm font-bold px-5 py-2.5 rounded-xl flex items-center gap-2 hover:bg-gray-200 transition shadow-lg shadow-white/5">
               <i class="fa-brands fa-discord text-lg"></i>
               <span>Login with Discord</span>
           </a>
@@ -47,46 +56,73 @@
       </div>
   </header>
 
-  <!-- MAIN TEAM SECTION -->
-  <main class="py-12 px-6 max-w-7xl mx-auto flex-grow w-full space-y-8">
-    <div class="text-center max-w-2xl mx-auto space-y-3">
-      <h1 class="text-4xl font-extrabold text-white">About Our Team</h1>
-      <p class="text-gray-400 text-sm">World-class developers and security experts behind LAME Anti-Nuke Bot.</p>
+  <!-- ================= MAIN TEAM SECTION ================= -->
+  <main class="team-section">
+    <div class="header-container">
+      <h1 class="title">About Our Team</h1>
+      <p class="subtitle">World-class developers, designers, and security experts committed to building the next generation of Discord bot technology</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto pt-4">
+    <div class="team-grid">
 
       <!-- CARD 1: FLAME -->
-      <div class="bg-[#0c0e17] border border-white/10 rounded-2xl p-6 text-center space-y-4" data-discord-id="1038111857287897099">
-        <div class="w-24 h-24 mx-auto relative">
-          <img class="avatar-img w-full h-full rounded-full object-cover border-2 border-red-500" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Flame Avatar" />
+      <div class="team-card theme-red" data-discord-id="1038111857287897099">
+        <div class="card-banner"></div>
+        
+        <div class="avatar-wrapper">
+          <img class="avatar-img" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Avatar" />
+          <img class="avatar-decoration" src="" alt="Decoration" style="display: none;" />
+          <div class="status-dot offline" title="Offline"></div>
         </div>
-        <div>
-          <h3 class="text-xl font-bold text-white">Flame</h3>
-          <span class="inline-block text-xs bg-red-500/20 text-red-400 font-bold px-3 py-1 rounded-full mt-1">FOUNDER & DEVELOPER</span>
-          <p class="text-xs text-gray-400 mt-3 leading-relaxed">
-            Main owner and lead developer. Manages operations and shapes the future of the bot platform.
+
+        <div class="card-content">
+          <h3 class="user-name">Flame</h3>
+          <div class="role-badge">FOUNDER</div>
+          <p class="user-desc">
+            The Head of operations. As the main owner and developer, he manages all operations and makes the final decisions that shape the future of the project.
           </p>
+
+          <div class="social-links">
+            <a href="https://discord.com/users/1038111857287897099" target="_blank" class="discord-user-link" title="Discord"><i class="fa-brands fa-discord"></i></a>
+            <a href="https://github.com" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="mailto:contact@yourdomain.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+          </div>
         </div>
       </div>
 
       <!-- CARD 2: SHADOW -->
-      <div class="bg-[#0c0e17] border border-white/10 rounded-2xl p-6 text-center space-y-4" data-discord-id="1280046690182631428">
-        <div class="w-24 h-24 mx-auto relative">
-          <img class="avatar-img w-full h-full rounded-full object-cover border-2 border-cyan-500" src="https://cdn.discordapp.com/embed/avatars/1.png" alt="Shadow Avatar" />
+      <div class="team-card theme-cyan" data-discord-id="1280046690182631428">
+        <div class="card-banner"></div>
+
+        <div class="avatar-wrapper">
+          <img class="avatar-img" src="https://cdn.discordapp.com/embed/avatars/1.png" alt="Avatar" />
+          <img class="avatar-decoration" src="" alt="Decoration" style="display: none;" />
+          <div class="status-dot offline" title="Offline"></div>
         </div>
-        <div>
-          <h3 class="text-xl font-bold text-white">Shadow</h3>
-          <span class="inline-block text-xs bg-cyan-500/20 text-cyan-400 font-bold px-3 py-1 rounded-full mt-1">CO-OWNER</span>
-          <p class="text-xs text-gray-400 mt-3 leading-relaxed">
-            Co-leads infrastructure, bot anti-nuke modules, and community security.
+
+        <div class="card-content">
+          <h3 class="user-name">Shadow</h3>
+          <div class="role-badge">CO-OWNER</div>
+          <p class="user-desc">
+            Co-leads infrastructure & bot systems. Manages growth initiatives, community security, and ensures every service runs smoothly without compromise.
           </p>
+
+          <div class="social-links">
+            <a href="https://discord.com/users/1280046690182631428" target="_blank" class="discord-user-link" title="Discord"><i class="fa-brands fa-discord"></i></a>
+            <a href="https://github.com" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="mailto:contact@yourdomain.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+          </div>
         </div>
       </div>
 
     </div>
   </main>
 
+  <!-- ================= COMPACT BOTTOM FOOTER ================= -->
   <footer class="w-full py-4 border-t border-white/5 text-center text-xs text-gray-400 font-medium bg-[#0b0c10]/40 mt-auto">
     <p>LAME Anti-Nuke Bot &copy; All Rights Reserved. Created by <span class="text-white font-bold">Flame</span> &amp; <span class="text-white font-bold">Shadow</span></p>
   </footer>
