@@ -54,6 +54,11 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(err => console.error(`Error fetching Discord profile for ${discordId}:`, err));
     });
 });
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> f0a2d78 (fixed errors in commands, dashboard, and team)
 
 // Automatically syncs Bot PFP into header across all pages
 async function syncHeaderBotAvatar() {
@@ -76,4 +81,9 @@ async function syncHeaderBotAvatar() {
     }
 }
 
+<<<<<<< HEAD
 document.addEventListener("DOMContentLoaded", syncHeaderBotAvatar);
+=======
+document.addEventListener("DOMContentLoaded", syncHeaderBotAvatar);
+>>>>>>> 1a190c7 (Sync Bot PFP header across Commands, Dashboard, and Team pages)
+>>>>>>> f0a2d78 (fixed errors in commands, dashboard, and team)
