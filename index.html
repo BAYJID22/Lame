@@ -8,10 +8,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Socket.IO (Served directly by server.js) -->
-    <script src="/socket.io/socket.io.js"></script>
+    <!-- Socket.IO CDN (Required for GitHub Pages) -->
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/home/home.css">
+    <link rel="stylesheet" href="./home.css">
 </head>
 <body class="bg-[#090A0F] text-slate-100 min-h-screen flex flex-col justify-between items-center font-sans antialiased">
 
@@ -20,7 +20,7 @@
         <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
             
             <!-- BOT BRANDING & LIVE STATUS -->
-            <a href="/" class="flex items-center gap-3 text-white text-decoration-none">
+            <a href="./" class="flex items-center gap-3 text-white text-decoration-none">
                 <div class="relative w-10 h-10 bg-[#5865F2] rounded-xl flex items-center justify-center overflow-hidden border border-white/10 shadow-md flex-shrink-0">
                     <img id="headerBotAvatar" src="https://cdn.discordapp.com/embed/avatars/0.png" alt="Bot Avatar" class="w-full h-full object-cover">
                     <span id="botStatusDot" class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 rounded-full border-2 border-[#0b0c10]"></span>
@@ -36,13 +36,13 @@
 
             <!-- NAV LINKS -->
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
-                <a href="/" class="text-white font-bold">Home</a>
-                <a href="/commands" class="hover:text-white transition flex items-center gap-1.5">
+                <a href="./" class="text-white font-bold">Home</a>
+                <a href="./commands/" class="hover:text-white transition flex items-center gap-1.5">
                     Commands 
                     <span id="statCommandsBadge" class="bg-white/10 text-white text-xs px-2 py-0.5 rounded-full">529+</span>
                 </a>
-                <a href="/dashboard" class="hover:text-white transition">Dashboard</a>
-                <a href="/team" class="hover:text-white transition">Team</a>
+                <a href="./dashboard/" class="hover:text-white transition">Dashboard</a>
+                <a href="./team/" class="hover:text-white transition">Team</a>
             </nav>
 
             <!-- LOGIN BUTTON -->
@@ -73,7 +73,7 @@
                 <a href="https://discord.com/oauth2/authorize?client_id=1550784546331697194&permissions=8&integration_type=0&scope=bot" target="_blank" class="px-8 py-4 rounded-xl bg-white text-black font-bold text-lg hover:bg-gray-200 transition duration-300 flex items-center gap-3">
                     <i class="fa-solid fa-plus"></i> Add to Discord
                 </a>
-                <a href="/dashboard" class="px-8 py-4 rounded-xl glass-card text-white font-bold text-lg hover:bg-white/10 transition duration-300 flex items-center gap-3 border border-white/20">
+                <a href="./dashboard/" class="px-8 py-4 rounded-xl glass-card text-white font-bold text-lg hover:bg-white/10 transition duration-300 flex items-center gap-3 border border-white/20">
                     <i class="fa-solid fa-sliders"></i> Open Dashboard
                 </a>
             </div>
@@ -172,6 +172,6 @@
     </footer>
 
     <!-- SCRIPT LOADING -->
-    <script src="/home/home.js"></script>
+    <script src="./home.js"></script>
 </body>
 </html>
