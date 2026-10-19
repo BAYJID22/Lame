@@ -49,7 +49,7 @@ function filterCommands() {
 // Initial render of all commands
 renderCommands(commandsList);
 
-// Automatically syncs Bot PFP, Name, and Status on GitHub Pages via Lanyard API
+// Automatically syncs Bot PFP and Status
 async function syncHeaderBotAvatar() {
     const avatarImg = document.getElementById("headerBotAvatar");
     const statusDot = document.getElementById("botStatusDot");
@@ -87,7 +87,7 @@ async function syncHeaderBotAvatar() {
             }
         }
     } catch (err) {
-        console.error("Header bot avatar sync failed:", err);
+        console.log("Lanyard API inactive for this bot ID, using default display.");
     }
 }
 
