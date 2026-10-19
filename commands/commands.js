@@ -24,8 +24,14 @@ function renderCommands(items) {
     const grid = document.getElementById('commandsGrid');
     if (!grid) return;
 
-    grid.innerHTML = items.slice(0, 36).map(c => `
-        <div class="glass-card p-5 rounded-2xl border border-white/5 space-y-2">
+    if (items.length === 0) {
+        grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-400">No commands found matching your search.</div>`;
+        return;
+    }
+
+    // Render all filtered items so users can search and find any of the 450+ commands
+    grid.innerHTML = items.map(c => `
+        <div class="glass-card p-5 rounded-2xl border border-white/5 space-y-2 bg-[#12141D]/60 hover:border-white/20 transition">
             <div class="flex justify-between items-center">
                 <span class="font-mono text-xs text-white bg-white/10 px-2.5 py-1 rounded-lg font-bold">/${c.name}</span>
                 <span class="text-[10px] text-gray-400 font-mono uppercase bg-[#090A0F] px-2 py-0.5 rounded border border-white/5">${c.cat}</span>
@@ -41,9 +47,10 @@ function filterCommands() {
     renderCommands(filtered);
 }
 
+// Initial render of all commands
 renderCommands(commandsList);
 
-// Automatically syncs Bot PFP into header across all pages
+// Automatically syncs Bot PFP and Status into header across all pages
 async function syncHeaderBotAvatar() {
     const avatarImg = document.getElementById("headerBotAvatar");
     if (!avatarImg) return;
@@ -65,3 +72,39 @@ async function syncHeaderBotAvatar() {
 }
 
 document.addEventListener("DOMContentLoaded", syncHeaderBotAvatar);
+
+// Connect to the WebSocket server
+const socket = io();
+
+// Listen for live bot stats and profile updates from the backend
+socket.on('botStatsUpdate', (stats) => {
+    // 1. Update the Bot Avatar anywhere it exists on the page
+    const avatarImgs = document.querySelectorAll("#headerBotAvatar, .bot-avatar-display");
+    avatarImgs.forEach(img => {
+        if (stats.avatar && img.src !== stats.avatar) {
+            img.src = stats.avatar;
+        }
+    });
+
+    // 2. Update Bot Name if displayed
+    const nameDisplays = document.querySelectorAll(".bot-name-display");
+    nameDisplays.forEach(el => {
+        el.textContent = stats.botName;
+    });
+
+    // 3. Update Status Dot (online, idle, dnd)
+    const statusDot = document.getElementById("botStatusDot");
+    if (statusDot) {
+        statusDot.className = `absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#0b0c10] ${
+            stats.status === 'online' ? 'bg-emerald-500' :
+            stats.status === 'idle' ? 'bg-amber-500' :
+            stats.status === 'dnd' ? 'bg-rose-500' : 'bg-gray-500'
+        }`;
+    }
+
+    // 4. Update Activity text if available
+    const activityText = document.getElementById("botActivityText");
+    if (activityText) {
+        activityText.textContent = stats.activity;
+    }
+});

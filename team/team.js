@@ -54,29 +54,3 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(err => console.error(`Error fetching Discord profile for ${discordId}:`, err));
     });
 });
-<<<<<<< HEAD
-=======
-
-// Automatically syncs Bot PFP into header across all pages
-async function syncHeaderBotAvatar() {
-    const avatarImg = document.getElementById("headerBotAvatar");
-    if (!avatarImg) return;
-
-    const BOT_CLIENT_ID = "1550784546331697194"; // Your Discord Bot Client ID
-
-    try {
-        const res = await fetch(`https://api.lanyard.rest/v1/users/${BOT_CLIENT_ID}`);
-        const json = await res.json();
-        
-        if (json.success && json.data.discord_user.avatar) {
-            const user = json.data.discord_user;
-            const format = user.avatar.startsWith("a_") ? "gif" : "png";
-            avatarImg.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${format}?size=128`;
-        }
-    } catch (err) {
-        console.error("Header bot avatar sync failed:", err);
-    }
-}
-
-document.addEventListener("DOMContentLoaded", syncHeaderBotAvatar);
->>>>>>> 1a190c7 (Sync Bot PFP header across Commands, Dashboard, and Team pages)
