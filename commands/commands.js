@@ -29,7 +29,6 @@ function renderCommands(items) {
         return;
     }
 
-    // Render all filtered items so users can search and find any of the 450+ commands
     grid.innerHTML = items.map(c => `
         <div class="glass-card p-5 rounded-2xl border border-white/5 space-y-2 bg-[#12141D]/60 hover:border-white/20 transition">
             <div class="flex justify-between items-center">
@@ -50,21 +49,42 @@ function filterCommands() {
 // Initial render of all commands
 renderCommands(commandsList);
 
-// Automatically syncs Bot PFP and Status into header across all pages
+// Automatically syncs Bot PFP, Name, and Status on GitHub Pages via Lanyard API
 async function syncHeaderBotAvatar() {
     const avatarImg = document.getElementById("headerBotAvatar");
-    if (!avatarImg) return;
-
+    const statusDot = document.getElementById("botStatusDot");
+    const activityText = document.getElementById("botActivityText");
+    
     const BOT_CLIENT_ID = "1550784546331697194"; // Your Discord Bot Client ID
 
     try {
         const res = await fetch(`https://api.lanyard.rest/v1/users/${BOT_CLIENT_ID}`);
         const json = await res.json();
         
-        if (json.success && json.data.discord_user.avatar) {
+        if (json.success && json.data.discord_user) {
             const user = json.data.discord_user;
-            const format = user.avatar.startsWith("a_") ? "gif" : "png";
-            avatarImg.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${format}?size=128`;
+            
+            // 1. Sync Avatar
+            if (user.avatar && avatarImg) {
+                const format = user.avatar.startsWith("a_") ? "gif" : "png";
+                avatarImg.src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${format}?size=128`;
+            }
+
+            // 2. Sync Status Dot Color
+            if (statusDot) {
+                const status = json.data.discord_status || 'online';
+                statusDot.className = `absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#0b0c10] ${
+                    status === 'online' ? 'bg-emerald-500' :
+                    status === 'idle' ? 'bg-amber-500' :
+                    status === 'dnd' ? 'bg-rose-500' : 'bg-gray-500'
+                }`;
+            }
+
+            // 3. Sync Activity Text
+            if (activityText && json.data.activities && json.data.activities.length > 0) {
+                const act = json.data.activities[0];
+                activityText.textContent = `${act.type === 0 ? 'Playing' : act.type === 3 ? 'Watching' : 'Streaming'} ${act.name}`;
+            }
         }
     } catch (err) {
         console.error("Header bot avatar sync failed:", err);
@@ -72,39 +92,3 @@ async function syncHeaderBotAvatar() {
 }
 
 document.addEventListener("DOMContentLoaded", syncHeaderBotAvatar);
-
-// Connect to the WebSocket server
-const socket = io();
-
-// Listen for live bot stats and profile updates from the backend
-socket.on('botStatsUpdate', (stats) => {
-    // 1. Update the Bot Avatar anywhere it exists on the page
-    const avatarImgs = document.querySelectorAll("#headerBotAvatar, .bot-avatar-display");
-    avatarImgs.forEach(img => {
-        if (stats.avatar && img.src !== stats.avatar) {
-            img.src = stats.avatar;
-        }
-    });
-
-    // 2. Update Bot Name if displayed
-    const nameDisplays = document.querySelectorAll(".bot-name-display");
-    nameDisplays.forEach(el => {
-        el.textContent = stats.botName;
-    });
-
-    // 3. Update Status Dot (online, idle, dnd)
-    const statusDot = document.getElementById("botStatusDot");
-    if (statusDot) {
-        statusDot.className = `absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full border-2 border-[#0b0c10] ${
-            stats.status === 'online' ? 'bg-emerald-500' :
-            stats.status === 'idle' ? 'bg-amber-500' :
-            stats.status === 'dnd' ? 'bg-rose-500' : 'bg-gray-500'
-        }`;
-    }
-
-    // 4. Update Activity text if available
-    const activityText = document.getElementById("botActivityText");
-    if (activityText) {
-        activityText.textContent = stats.activity;
-    }
-});
